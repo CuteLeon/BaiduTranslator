@@ -19,9 +19,14 @@ Public Class BaiduTranslatorForm
     Private Sub BaiduTranslatorForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         FromBox.SelectedIndex = 0
         ToBox.SelectedIndex = 0
-        If My.Computer.Clipboard.ContainsText Then
-            TextBox1.Text = My.Computer.Clipboard.GetText
+        If Command() <> vbNullString Then
+            TextBox1.Text = Command()
             TextBox2.Text = Translate(TextBox1.Text, "auto", "auto")
+        Else
+            If My.Computer.Clipboard.ContainsText Then
+                TextBox1.Text = My.Computer.Clipboard.GetText
+                TextBox2.Text = Translate(TextBox1.Text, "auto", "auto")
+            End If
         End If
     End Sub
 
